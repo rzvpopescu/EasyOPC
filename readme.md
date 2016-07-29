@@ -37,7 +37,8 @@ List<Tag> tags = manager.AvailableTags;
 4. Subscrie to tags changes :
 
 
-4. Start the OPC server monitoring process. 
+
+5. Start the OPC server monitoring process. 
 
 ```C#
 IResult result = manager.StartMonitoring();
