@@ -37,7 +37,9 @@ List<Tag> tags = manager.AvailableTags;
 4. Subscrie to tags changes :
 
 ```C#
-manager.SuSubscribeToChangeEvents 
+manager.SuSubscribeToChangeEvents((changedTag)=>{
+	Console.WriteLine(String.Format("Tag {0} has a new value of {1} ",changedTag.DisplayName,changedTag.Value.ToString()));
+});
 ```
 
 5. Start the OPC server monitoring process. 
@@ -50,6 +52,12 @@ if(!result.Success)
  	throw result.Exception;
 }
 ```
-The above code monitors all the available tags for changes;
+The above code monitors all the available tags for changes.
+To monitor just for a certain tag or tags changes you can use the ``StartMonitoring()`` method overload.
+
+```C#
+List<Tag> selectedTags = manager.AvailableTags.Where(tag=> ... some condition here ..);
+manager.StartMonitoring(selectedTags);
+```
 
 
