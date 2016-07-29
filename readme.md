@@ -34,10 +34,7 @@ manager.Init(settings);
 List<Tag> tags = manager.AvailableTags;	
 ```
 
-
 4. Start the OPC server monitoring process. 
-
-This will monitor for all the available tags changes
 
 ```C#
 IResult result = manager.StartMonitoring();
@@ -47,6 +44,6 @@ if(!result.Success)
  	throw result.Exception;
 }
 ```
-
+The above code monitors all the available tags changes
 
 
