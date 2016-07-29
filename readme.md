@@ -36,7 +36,9 @@ List<Tag> tags = manager.AvailableTags;
 
 4. Subscrie to tags changes :
 
-
+```C#
+manager.SuSubscribeToChangeEvents 
+```
 
 5. Start the OPC server monitoring process. 
 
