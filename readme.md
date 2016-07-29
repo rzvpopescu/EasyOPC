@@ -28,9 +28,17 @@ ISettings settings =  new Settings(ipAddress,iPort,OPCServerInstanceName,Certifi
 
 manager.Init(settings);
 ```
-3. Start the OPC server monitoring process. 
+3. Retrieve the tags from the OPC Server
+
+```C#
+List<Tag> tags = manager.AvailableTags;	
+```
+
+
+4. Start the OPC server monitoring process. 
 
 This will monitor for all the available tags changes
+
 ```C#
 IResult result = manager.StartMonitoring();
 
