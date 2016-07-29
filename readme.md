@@ -1,6 +1,6 @@
 
 ## Easy OPC
-Eeasy OPC is a .NET wrapper over the [OPC Foundation UA .NET](https://github.com/OPCFoundation/UA-.NET) library.
+Eeasy OPC is a .NET wrapper over the [OPC Foundation UA .NET](https://github.com/OPCFoundation/UA-.NET) library and can be used for OPC Server tags/singals retrieval,monitoring and updating in real time.
 
 
 ### Prerequiesites
@@ -9,13 +9,13 @@ Eeasy OPC is a .NET wrapper over the [OPC Foundation UA .NET](https://github.com
 
 ### How to use it
 
-1. Create an instance of MonitoringManager class:
+- Create an instance of MonitoringManager class:
 
 ```C#
 IMonitoringManager manager =  new MonitoringManager();
 ```
 
-2. Initialize the instance with data about he monitored OPC server:
+- Initialize the instance with data about he monitored OPC server:
 
 ```C#
 IResult result = manager.Init(ipAddress,iPort,OPCServerInstanceName,CertificateName);
@@ -28,13 +28,13 @@ ISettings settings =  new Settings(ipAddress,iPort,OPCServerInstanceName,Certifi
 
 manager.Init(settings);
 ```
-3. Retrieve the tags from the OPC Server:
+- Retrieve the tags from the OPC Server:
 
 ```C#
 List<Tag> tags = manager.AvailableTags;	
 ```
 
-4. Subscrie to tags changes :
+- Subscribe to tags changes :
 
 ```C#
 manager.SuSubscribeToChangeEvents((changedTag)=>{
@@ -42,7 +42,7 @@ manager.SuSubscribeToChangeEvents((changedTag)=>{
 });
 ```
 
-5. Start the OPC server monitoring process. 
+- Start the OPC server monitoring process. 
 
 ```C#
 IResult result = manager.StartMonitoring();
@@ -53,11 +53,32 @@ if(!result.Success)
 }
 ```
 The above code monitors all the available tags for changes.
-To monitor just for a certain tag or tags changes you can use the ``StartMonitoring()`` method overload.
+
+To monitor just for a certain tag or tags changes you can use the ``StartMonitoring()`` method overload:
 
 ```C#
 List<Tag> selectedTags = manager.AvailableTags.Where(tag=> ... some condition here ..);
 manager.StartMonitoring(selectedTags);
 ```
 
+- To retrieve the monitored tags (the tags passed to the ``StartMonitoring()`` method) can be used the *MonitoredTags* property :
+```C#
+var monitoredTags = manager.MonitoredTags;
+```
+
+- Force a tag refresh. The value and the quelity of the tag will be reloaded from the OPC Server and will update the given tag.
+```C#
+manager.RefreshTag(tagID);
+```
+
+-  Write a tag value, for a writable tag.
+```C#
+manager.WriteTagValue(tagID,tagValue);
+```
+
+
+- Stop the monitoring process
+```C#
+manager.StopMonitoring()
+```
 
