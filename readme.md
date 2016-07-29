@@ -44,6 +44,6 @@ if(!result.Success)
  	throw result.Exception;
 }
 ```
-The above code monitors all the available tags changes
+The above code monitors all the available tags for changes;
 
 
