@@ -5,7 +5,8 @@ Eeasy OPC is a .NET wrapper over the [OPC Foundation UA .NET](https://github.com
 
 ### Prerequisite
 - A 2048 bits key size valid certificate, for the "CurrentUser" store.
-
+- **Opc.Ua.Client.dll**  from the [OPC Foundation UA .NET Library](https://github.com/OPCFoundation/UA-.NET)
+- **Opc.Ua.Core.dll**  from the [OPC Foundation UA .NET Library](https://github.com/OPCFoundation/UA-.NET)
 
 ### How to use it
 
@@ -81,4 +82,3 @@ manager.WriteTagValue(tagID,tagValue);
 ```C#
 manager.StopMonitoring()
 ```
-
